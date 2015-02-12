@@ -1,12 +1,11 @@
 var wordOrder = function(string) {
   var words = string.split(" ");
-  words.reverse();
   var results = {};
 
   words.forEach(function(word) {
-
-    // var re = /\w+/;
-    // word = re.exec(word);
+    word = word.toLowerCase();
+    var re = /\w+/;
+    word = (re.exec(word));
 
     if (results[word] > 0) {
       results[word] += 1;
@@ -16,5 +15,22 @@ var wordOrder = function(string) {
 
   });
 
-  return results;
+  var keys = Object.keys(results);
+  var lengthOfKeys = keys.length;
+  var sortedResults = {};
+
+  for(var index = 0; index < lengthOfKeys; index++) {
+    var winner = keys[0];
+    keys.forEach(function(key) {
+      if (results[key] > results[winner]) {
+        winner = key;
+      }
+    });
+    // debugger;
+    sortedResults[winner] = results[winner];
+    keys.splice(keys.indexOf(winner), 1)
+    console.log(sortedResults);
+  }
+
+  return sortedResults;
 };
