@@ -5,7 +5,7 @@ var wordOrder = function(string) {
   words.forEach(function(word) {
     word = word.toLowerCase();
     var re = /\w+/;
-    word = (re.exec(word));
+    word = re.exec(word);
 
     if (results[word] > 0) {
       results[word] += 1;
@@ -26,11 +26,33 @@ var wordOrder = function(string) {
         winner = key;
       }
     });
-    // debugger;
+
     sortedResults[winner] = results[winner];
     keys.splice(keys.indexOf(winner), 1)
-    console.log(sortedResults);
   }
 
   return sortedResults;
 };
+
+$(document).ready(function() {
+  $("form#word-order").submit(function(event) {
+
+    $(".sorted").empty();
+    
+    var string = $("input#string").val();
+    var results = wordOrder(string);
+
+    var keys = Object.keys(results);
+
+    keys.forEach(function(key) {
+
+      $(".sorted").append("<li>" + key + " (" + results[key] + ")" + "</li>");
+
+    });
+
+    $("#results").show();
+    event.preventDefault();
+
+  });
+
+});

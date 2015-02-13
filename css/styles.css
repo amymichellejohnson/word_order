@@ -1,0 +1,15 @@
+#results {
+  display: none;
+}
+
+body {
+  background-image: url(bg.jpg)
+}
+
+.container {
+  background-color: hsla(24, 100%, 87%, 0.82);
+
+  /*opacity: 0.6;*/
+  margin-top: 230px;
+  padding-bottom: 10px;
+}
